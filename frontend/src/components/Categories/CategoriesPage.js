@@ -28,6 +28,9 @@ class CategoriesPage extends Component {
 		if (this.props.categories.length === 0) {
 			this.props.fetchCategories();
 		}
+		if (this.props.cards.length === 0) {
+			this.props.fetchCards();
+		}
 	}
 
 	onEdit(e, category) {
@@ -151,7 +154,8 @@ CategoriesPage.propTypes = {
 	categories: PropTypes.array.isRequired,
 	fetchCategories: PropTypes.func.isRequired,
 	updateCategory: PropTypes.func.isRequired,
-	deleteCategory: PropTypes.func.isRequired
+	deleteCategory: PropTypes.func.isRequired,
+	fetchCards: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
