@@ -21,7 +21,7 @@ from django.urls import path, include, re_path
 from django.views.generic import TemplateView
 
 urlpatterns = [
-	path('', include('flashcard.urls')),
-	re_path('.*', TemplateView.as_view(template_name="index.html")),
-	
+    path('api/', include('flashcard.urls')),
+    re_path('.*', TemplateView.as_view(template_name="index.html")),
+
 ]

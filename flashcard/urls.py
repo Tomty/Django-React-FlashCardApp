@@ -8,5 +8,5 @@ router.register('flashcard', views.CardView)
 router.register('category', views.CategoryView)
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('api/', include(router.urls))
 ]
