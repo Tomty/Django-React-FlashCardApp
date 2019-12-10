@@ -38,7 +38,7 @@ export function cardDeleted(id) {
 
 export function fetchCards() {
 	return (dispatch) => {
-		fetch('http://tomty.alwaysdata.net/flashcard/')
+		fetch('http://tomty.alwaysdata.net/api/flashcard/')
 			.then((res) => res.json())
 			.then((cards) => dispatch(setCards(cards)));
 	};
@@ -46,7 +46,7 @@ export function fetchCards() {
 
 export function saveCard(cardData) {
 	return (dispatch) => {
-		fetch('http://tomty.alwaysdata.net/flashcard/', {
+		fetch('http://tomty.alwaysdata.net/api/flashcard/', {
 			method: 'POST',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(cardData)
@@ -58,7 +58,7 @@ export function saveCard(cardData) {
 
 export function fetchCard(id) {
 	return (dispatch) => {
-		fetch('http://tomty.alwaysdata.net/flashcard/' + id + '/')
+		fetch('http://tomty.alwaysdata.net/api/flashcard/' + id + '/')
 			.then((res) => res.json())
 			.then((card) => dispatch(cardFetched(card)));
 	};
@@ -66,7 +66,7 @@ export function fetchCard(id) {
 
 export function updateCard(cardData) {
 	return (dispatch) => {
-		fetch('http://tomty.alwaysdata.net/flashcard/' + cardData.id + '/', {
+		fetch('http://tomty.alwaysdata.net/api/flashcard/' + cardData.id + '/', {
 			method: 'PUT',
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(cardData)
@@ -78,7 +78,7 @@ export function updateCard(cardData) {
 
 export function deleteCard(id) {
 	return (dispatch) => {
-		fetch('http://tomty.alwaysdata.net/flashcard/' + id + '/', {
+		fetch('http://tomty.alwaysdata.net/api/flashcard/' + id + '/', {
 			credentials: 'same-origin',
 			method: 'DELETE',
 			headers: { 'content-type': 'application/json' },

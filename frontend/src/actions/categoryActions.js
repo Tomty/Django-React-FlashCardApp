@@ -1,7 +1,7 @@
 import { FETCH_CATEGORIES, NEW_CATEGORY } from './types';
 
 export const fetchCategories = () => (dispatch) => {
-	fetch('http://tomty.alwaysdata.net/category/').then((res) => res.json()).then((categories) =>
+	fetch('http://tomty.alwaysdata.net/api/category/').then((res) => res.json()).then((categories) =>
 		dispatch({
 			type: FETCH_CATEGORIES,
 			payload: categories
@@ -10,7 +10,7 @@ export const fetchCategories = () => (dispatch) => {
 };
 
 export const createCategory = (categoryData) => (dispatch) => {
-	fetch('http://tomty.alwaysdata.net/category/', {
+	fetch('http://tomty.alwaysdata.net/api/category/', {
 		method: 'POST',
 		headers: { 'content-type': 'application/json' },
 		body: JSON.stringify(categoryData)
