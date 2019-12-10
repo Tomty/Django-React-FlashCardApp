@@ -79,7 +79,7 @@ class CardForm extends Component {
 	}
 	render() {
 		const categoryItems = this.props.categories.map((category) => (
-			<option key={category.name} value={category.name}>
+			<option key={category.id} value={category.name}>
 				{category.name}
 			</option>
 		));

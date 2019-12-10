@@ -38,7 +38,9 @@ export function cardDeleted(id) {
 
 export function fetchCards() {
 	return (dispatch) => {
-		fetch('http://tomty.alwaysdata.net/flashcard/').then((res) => res.json()).then((cards) => dispatch(setCards(cards)));
+		fetch('http://tomty.alwaysdata.net/flashcard/')
+			.then((res) => res.json())
+			.then((cards) => dispatch(setCards(cards)));
 	};
 }
 
@@ -55,7 +57,6 @@ export function saveCard(cardData) {
 }
 
 export function fetchCard(id) {
-	console.log('need to fetch: ' + id);
 	return (dispatch) => {
 		fetch('http://tomty.alwaysdata.net/flashcard/' + id + '/')
 			.then((res) => res.json())

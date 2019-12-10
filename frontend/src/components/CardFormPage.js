@@ -21,10 +21,10 @@ class CardFormPage extends React.Component {
 	saveCard = (card, id) => {
 		if (id) {
 			this.props.updateCard(card);
-			this.setState({ redirect: true });
+			setTimeout(() => this.setState({ redirect: true }), 200);
 		} else {
 			this.props.saveCard(card);
-			this.setState({ redirect: true });
+			setTimeout(() => this.setState({ redirect: true }), 200);
 		}
 	};
 
@@ -44,15 +44,11 @@ class CardFormPage extends React.Component {
 function mapStateToProps(state, props) {
 	const { match } = props;
 	if (match.params.id) {
-		console.log(match.params.id);
-		console.log(state.cards.items);
-		console.log(state.cards.items.find((x) => x.id.toString() === match.params.id));
 		return {
 			card: state.cards.items.find((item) => item.id.toString() === match.params.id),
 			categories: state.categories.items
 		};
 	}
-	console.log('create');
 
 	return { card: null, categories: state.categories.items };
 }
