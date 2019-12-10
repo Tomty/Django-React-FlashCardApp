@@ -114,7 +114,12 @@ class CardForm extends Component {
 				<br />
 				<div>
 					<label>Category</label>
-					<select className="browser-default custom-select" name="category" onChange={this.onChange}>
+					<select
+						className="browser-default custom-select"
+						name="category"
+						value={this.state.category}
+						onChange={this.onChange}
+					>
 						{categoryItems}
 					</select>
 				</div>
