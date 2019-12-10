@@ -19,8 +19,6 @@ class CardForm extends Component {
 	};
 
 	componentWillReceiveProps = (nextProps) => {
-		console.log('PROPS:');
-		console.log(nextProps);
 		if (this.props.card) {
 			this.setState({
 				id: nextProps.card.id,
@@ -33,7 +31,6 @@ class CardForm extends Component {
 
 	onChange(e) {
 		if (!!this.state.errors[e.target.name]) {
-			console.log('test');
 			let errors = Object.assign({}, this.state.errors);
 			delete errors[e.target.name];
 			this.setState({
@@ -43,8 +40,6 @@ class CardForm extends Component {
 		} else {
 			this.setState({ [e.target.name]: e.target.value });
 		}
-
-		console.log(this.state.category);
 	}
 
 	onSubmit(e) {
@@ -74,15 +69,10 @@ class CardForm extends Component {
 				}
 			};
 
-			console.log('id attribute: ' + this.props.id);
-
 			if (this.state.id) {
 				card.id = this.state.id;
-				console.log('adding id attribute: ' + this.state.id);
-				console.log(card);
 			}
 
-			console.log(card);
 			this.props.saveCard(card, this.state.id);
 			this.setState({ done: true });
 		}
