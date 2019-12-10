@@ -14,51 +14,12 @@ const NavItem = (props) => {
 	);
 };
 
-class NavDropdown extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			isToggleOn: false
-		};
-	}
-	showDropdown(e) {
-		e.preventDefault();
-		this.setState((prevState) => ({
-			isToggleOn: !prevState.isToggleOn
-		}));
-	}
-	render() {
-		const classDropdownMenu = 'dropdown-menu' + (this.state.isToggleOn ? ' show' : '');
-		return (
-			<li className="nav-item dropdown">
-				<a
-					className="nav-link dropdown-toggle"
-					href="/"
-					id="navbarDropdown"
-					role="button"
-					data-toggle="dropdown"
-					aria-haspopup="true"
-					aria-expanded="false"
-					onClick={(e) => {
-						this.showDropdown(e);
-					}}
-				>
-					{this.props.name}
-				</a>
-				<div className={classDropdownMenu} aria-labelledby="navbarDropdown">
-					{this.props.children}
-				</div>
-			</li>
-		);
-	}
-}
-
 class Navigation extends Component {
 	render() {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 				<a className="navbar-brand" href="/">
-					Navbar
+					Home
 				</a>
 				<button
 					className="navbar-toggler"
@@ -74,8 +35,8 @@ class Navigation extends Component {
 
 				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul className="navbar-nav mr-auto">
-						<NavItem path="/cards" name="Home" />
-						<NavItem path="/cards/new" name="Add Card" />
+						<NavItem path="/cards" name="Manage Cards" />
+						<NavItem path="/" name="Manage Categries" />
 					</ul>
 				</div>
 			</nav>
