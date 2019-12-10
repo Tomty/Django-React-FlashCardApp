@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { saveCard, fetchCard, updateCard } from '../actions/cardActions';
-import { fetchCategories } from '../actions/categoryActions';
+import { saveCard, fetchCard, updateCard } from '../../actions/cardActions';
+import { fetchCategories } from '../../actions/categoryActions';
 import CardForm from './CardForm';
 
 class CardFormPage extends React.Component {

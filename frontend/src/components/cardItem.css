@@ -1,7 +1,0 @@
-.card {
-	border: 1px solid black;
-	float: left;
-	margin: 5px;
-	padding: 5px 3px;
-	/*setting width for each and every card element as well as -10px for removing the margin width for 5 elements*/
-}

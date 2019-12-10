@@ -2,12 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
-import './cardItem.css';
 
 export default function CardItem({ card, deleteCard }) {
 	return (
 		<div>
-			<Card border="dark" className="card" style={{ width: '16rem' }}>
+			<Card
+				border="dark"
+				className="card"
+				style={{
+					width: '16rem',
+					float: 'left',
+					margin: '5px',
+					padding: '5px 3px'
+				}}
+			>
 				<Card.Header as="h5">
 					<div align="center">{card.category.name}</div>
 				</Card.Header>

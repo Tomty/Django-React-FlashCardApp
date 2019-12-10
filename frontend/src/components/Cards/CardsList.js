@@ -7,7 +7,17 @@ import Card from 'react-bootstrap/Card';
 export default function CardsList({ cards, deleteCard }) {
 	const addCard = (
 		<div>
-			<Card border="dark" className="card" style={{ width: '16rem', height: '15.2rem' }}>
+			<Card
+				border="dark"
+				className="card"
+				style={{
+					width: '16rem',
+					height: '15.2rem',
+					float: 'left',
+					margin: '5px',
+					padding: '5px 3px'
+				}}
+			>
 				<Card.Header as="h5">
 					<div align="center">Add card</div>
 				</Card.Header>

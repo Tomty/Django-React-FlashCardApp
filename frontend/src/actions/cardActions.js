@@ -81,8 +81,7 @@ export function deleteCard(id) {
 		fetch('http://tomty.alwaysdata.net/api/flashcard/' + id + '/', {
 			credentials: 'same-origin',
 			method: 'DELETE',
-			headers: { 'content-type': 'application/json' },
-			body: ''
+			headers: { 'content-type': 'application/json' }
 		})
 			.then((res) => res.text())
 			.then((card) => dispatch(cardDeleted(id)));

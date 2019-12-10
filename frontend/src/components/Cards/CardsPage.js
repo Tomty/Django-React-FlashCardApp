@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetchCards, deleteCard } from '../actions/cardActions';
-import { fetchCategories } from '../actions/categoryActions';
+import { fetchCards, deleteCard } from '../../actions/cardActions';
+import { fetchCategories } from '../../actions/categoryActions';
 import CardsList from './CardsList';
 
 class CardsPage extends Component {
@@ -23,8 +23,9 @@ class CardsPage extends Component {
 	}
 
 	componentWillMount() {
-		this.props.fetchCards();
-		this.props.fetchCategories();
+		if (this.props.cards.length === 0) this.props.fetchCards();
+		if (this.props.categories.length === 0) this.props.fetchCategories();
+		this.setState({ cardsDisplayed: this.props.cards });
 	}
 
 	onChange(e) {
