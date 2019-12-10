@@ -120,6 +120,7 @@ class CardForm extends Component {
 							<label>Question</label>
 							<br />
 							<input
+								className="form-control"
 								style={selectStyle}
 								type="text"
 								name="question"
@@ -133,6 +134,7 @@ class CardForm extends Component {
 							<label>Answer</label>
 							<br />
 							<input
+								className="form-control"
 								style={selectStyle}
 								type="text"
 								name="answer"
