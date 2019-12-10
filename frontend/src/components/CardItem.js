@@ -6,19 +6,31 @@ import './cardItem.css';
 
 export default function CardItem({ card, deleteCard }) {
 	return (
-		<Card className="card" style={{ width: '15rem' }}>
-			<Card.Body className="cardBody">
-				<Card.Title>{card.category.name}</Card.Title>
-				<Card.Subtitle className="mb-2 text-muted">{card.question}</Card.Subtitle>
-				<Card.Text>{card.answer}</Card.Text>
-				<Link to={`/card/${card.id}`} className="btn btn-success">
-					Edit
-				</Link>
-				<button type="button" className="btn btn-danger" onClick={() => deleteCard(card.id)}>
-					Delete
-				</button>
-			</Card.Body>
-		</Card>
+		<div>
+			<Card border="dark" className="card" style={{ width: '16rem' }}>
+				<Card.Header as="h5">
+					<div align="center">{card.category.name}</div>
+				</Card.Header>
+				<Card.Body className="cardBody">
+					<Card.Title>{card.question}</Card.Title>
+					<br />
+					<Card.Subtitle className="mb-2 text-muted">{card.answer}</Card.Subtitle>
+				</Card.Body>
+				<Card.Footer>
+					<Link to={`/card/${card.id}`} className="btn btn-success">
+						Edit
+					</Link>
+					<button
+						type="button"
+						className="btn btn-danger"
+						onClick={() => deleteCard(card.id)}
+						style={{ float: 'right' }}
+					>
+						Delete
+					</button>
+				</Card.Footer>
+			</Card>
+		</div>
 	);
 }
 

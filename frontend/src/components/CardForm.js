@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
-import './cardForm.css';
 
 class CardForm extends Component {
 	constructor(props) {
@@ -95,39 +94,84 @@ class CardForm extends Component {
 			</option>
 		));
 
+		var formStyle = {
+			padding: '10px'
+		};
+
+		var selectStyle = {
+			width: '300px'
+		};
+
+		var styleWrapper = {
+			height: '100vh',
+			width: '100%',
+			display: 'flex',
+			flexDirection: 'column',
+			justifyContent: 'center',
+			alignItems: 'center'
+		};
+
+		var styleFormWrapper = {
+			width: '400px',
+			display: 'flex',
+			flexDirection: 'column',
+			padding: '20px 40px',
+			borderRadius: '10px',
+			boxShadow: '0px 10px 50px #555',
+			backgroundColor: '#ffffff'
+		};
+
 		const form = (
-			<form onSubmit={this.onSubmit}>
-				<h1>Add Card</h1>
-				<div className={classnames('field', { error: !!this.state.errors.question })}>
-					<label>Question {this.state.id}</label>
-					<br />
-					<input type="text" name="question" onChange={this.onChange} value={this.state.question} />
-					<span>{this.state.errors.question}</span>
+			<div align="center" style={styleWrapper} className="wrapper">
+				<div className="form-wrapper" style={styleFormWrapper}>
+					<form onSubmit={this.onSubmit}>
+						<h1>Add Card</h1>
+						<div className={classnames('field', { error: !!this.state.errors.question })}>
+							<label>Question</label>
+							<br />
+							<input
+								style={selectStyle}
+								type="text"
+								name="question"
+								onChange={this.onChange}
+								value={this.state.question}
+							/>
+							<span>{this.state.errors.question}</span>
+						</div>
+						<br />
+						<div className={classnames('field', { error: !!this.state.errors.answer })}>
+							<label>Answer</label>
+							<br />
+							<input
+								style={selectStyle}
+								type="text"
+								name="answer"
+								onChange={this.onChange}
+								value={this.state.answer}
+							/>
+							<span>{this.state.errors.answer}</span>
+						</div>
+						<br />
+						<div>
+							<label>Category</label>
+							<br />
+							<select
+								style={selectStyle}
+								className="browser-default custom-select"
+								name="category"
+								value={this.state.category}
+								onChange={this.onChange}
+							>
+								{categoryItems}
+							</select>
+						</div>
+						<br />
+						<button type="submit" className="btn btn-success">
+							Submit
+						</button>
+					</form>
 				</div>
-				<br />
-				<div className={classnames('field', { error: !!this.state.errors.answer })}>
-					<label>Answer</label>
-					<br />
-					<input type="text" name="answer" onChange={this.onChange} value={this.state.answer} />
-					<span>{this.state.errors.answer}</span>
-				</div>
-				<br />
-				<div>
-					<label>Category</label>
-					<select
-						className="browser-default custom-select"
-						name="category"
-						value={this.state.category}
-						onChange={this.onChange}
-					>
-						{categoryItems}
-					</select>
-				</div>
-				<br />
-				<button type="submit" className="btn btn-success">
-					Submit
-				</button>
-			</form>
+			</div>
 		);
 
 		return <div>{form}</div>;
