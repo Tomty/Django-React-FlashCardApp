@@ -51,16 +51,40 @@ class CardsPage extends Component {
 			</option>
 		));
 
+		var searchStyle = {
+			padding: '10px'
+		};
+
+		var selectStyle = {
+			width: '300px'
+		};
+
 		return (
-			<div>
+			<div style={searchStyle} align="center">
+				<h1 align="center">Search</h1>
 				<label> Choose Category</label>
-				<select className="browser-default custom-select" name="category" onChange={this.onChange}>
+				<br />
+				<select
+					align="center"
+					style={selectStyle}
+					className="browser-default custom-select"
+					name="category"
+					onChange={this.onChange}
+				>
 					<option value="">All Categories</option>
 					{categoryItems}
 				</select>
+				<br />
 				<label>Search Card</label>
 				<br />
-				<input type="text" name="search" value={this.state.search} onChange={this.onChangeText} />
+				<input
+					style={selectStyle}
+					type="text"
+					name="search"
+					value={this.state.search}
+					onChange={this.onChangeText}
+				/>
+				<hr />
 				<h1 align="center">Cards List</h1>
 				<CardsList cards={this.state.cardsDisplayed} deleteCard={this.props.deleteCard} />
 			</div>
