@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Table from 'react-bootstrap/Table';
+import Alert from 'react-bootstrap/Alert';
 
 import { fetchCards } from '../../actions/cardActions';
 import { fetchCategories, updateCategory, createCategory, deleteCategory } from '../../actions/categoryActions';
@@ -13,7 +14,9 @@ class CategoriesPage extends Component {
 		this.state = {
 			newCategory: '',
 			editIds: [],
-			editItems: []
+			editItems: [],
+			showAlert: false,
+			categoryToDelete: {}
 		};
 
 		this.onEdit = this.onEdit.bind(this);
@@ -22,6 +25,7 @@ class CategoriesPage extends Component {
 		this.onCancel = this.onCancel.bind(this);
 		this.onAdd = this.onAdd.bind(this);
 		this.onChangeAdd = this.onChangeAdd.bind(this);
+		this.showAlert = this.showAlert.bind(this);
 	}
 
 	componentWillMount() {
@@ -68,8 +72,13 @@ class CategoriesPage extends Component {
 		if (this.state.newCategory !== '') this.props.createCategory({ name: this.state.newCategory });
 	}
 
-	onDelete(e, category) {
-		this.props.deleteCategory(category);
+	onDelete() {
+		this.props.deleteCategory(this.state.categoryToDelete);
+		this.setState({ showAlert: false, categoryToDelete: {} });
+	}
+
+	showAlert(e, category) {
+		this.setState({ showAlert: true, categoryToDelete: category });
 	}
 
 	render() {
@@ -87,10 +96,18 @@ class CategoriesPage extends Component {
 						</td>
 						<td>{this.props.cards.filter((item) => item.category.id === category.id).length}</td>
 						<td>
-							<button className="btn btn-success" onClick={(e) => this.onSave(e, category)}>
+							<button
+								style={{ marginRight: '5px' }}
+								className="btn btn-success"
+								onClick={(e) => this.onSave(e, category)}
+							>
 								Save
 							</button>
-							<button className="btn btn-danger" onClick={(e) => this.onCancel(e, category)}>
+							<button
+								style={{ marginLeft: '5px' }}
+								className="btn btn-danger"
+								onClick={(e) => this.onCancel(e, category)}
+							>
 								Cancel
 							</button>
 						</td>
@@ -101,10 +118,18 @@ class CategoriesPage extends Component {
 						<td>{category.name}</td>
 						<td>{this.props.cards.filter((item) => item.category.id === category.id).length}</td>
 						<td>
-							<button className="btn btn-info" onClick={(e) => this.onEdit(e, category)}>
+							<button
+								style={{ marginRight: '5px' }}
+								className="btn btn-info"
+								onClick={(e) => this.onEdit(e, category)}
+							>
 								Edit
 							</button>
-							<button className="btn btn-danger" onClick={(e) => this.onDelete(e, category)}>
+							<button
+								style={{ marginLeft: '5px' }}
+								className="btn btn-danger"
+								onClick={(e) => this.showAlert(e, category)}
+							>
 								Delete
 							</button>
 						</td>
@@ -115,6 +140,29 @@ class CategoriesPage extends Component {
 		return (
 			<div>
 				<h1 align="center">Categories List</h1>
+				<div style={{ display: 'flex', justifyContent: 'center' }}>
+					<Alert style={{ width: '50%' }} show={this.state.showAlert} variant="danger">
+						<Alert.Heading>Delete action</Alert.Heading>
+						<p>Attention! If you delete this category, all the cards related to it will be deleted too</p>
+						<hr />
+						<div className="d-flex justify-content-center">
+							<button
+								style={{ marginRight: '5px' }}
+								className="btn btn-danger"
+								onClick={() => this.onDelete()}
+							>
+								Delete
+							</button>
+							<button
+								style={{ marginLeft: '5px' }}
+								className="btn btn-danger"
+								onClick={() => this.setState({ showAlert: false, categoryToDelete: {} })}
+							>
+								Cancel
+							</button>
+						</div>
+					</Alert>
+				</div>
 				<div style={{ padding: '10px' }}>
 					<Table striped bordered hover size="sm">
 						<thead>
