@@ -115,7 +115,7 @@ class CardForm extends Component {
 			<div align="center" style={styleWrapper} className="wrapper">
 				<div className="form-wrapper" style={styleFormWrapper}>
 					<form onSubmit={this.onSubmit}>
-						<h1>Add Card</h1>
+						<h1>{this.state.id !== null ? <div>Edit Card</div> : <div>Add Card</div>}</h1>
 						<div className={classnames('field', { error: !!this.state.errors.question })}>
 							<label>Question</label>
 							<br />
