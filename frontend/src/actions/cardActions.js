@@ -29,7 +29,6 @@ export function cardUpdated(card) {
 }
 
 export function cardDeleted(id) {
-	console.log(id);
 	return {
 		type: CARD_DELETED,
 		payload: id
@@ -71,7 +70,7 @@ export function updateCard(cardData) {
 			headers: { 'content-type': 'application/json' },
 			body: JSON.stringify(cardData)
 		})
-			.then((res) => res.json)
+			.then((res) => res.json())
 			.then((card) => dispatch(cardUpdated(card)));
 	};
 }

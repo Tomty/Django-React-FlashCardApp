@@ -19,12 +19,14 @@ class CardForm extends Component {
 	};
 
 	componentWillReceiveProps = (nextProps) => {
+		console.log('props:');
+		console.log(nextProps);
 		if (this.props.card) {
 			this.setState({
 				id: nextProps.card.id,
 				question: nextProps.card.question,
 				answer: nextProps.card.answer,
-				catgory: nextProps.card.category.name
+				category: nextProps.card.category.name
 			});
 		}
 	};
@@ -54,11 +56,10 @@ class CardForm extends Component {
 		const isValid = Object.keys(errors).length === 0;
 
 		if (isValid) {
-			let cat = this.state.category;
-			let id = 0;
-			if (cat === '') {
+			let cat = {};
+			if (this.state.category === '') {
 				cat = this.props.categories[0];
-			} else cat = this.props.categories.find((el) => (el.name = cat));
+			} else cat = this.props.categories.find((el) => el.name === this.state.category);
 
 			const card = {
 				question: this.state.question,
@@ -83,10 +84,6 @@ class CardForm extends Component {
 				{category.name}
 			</option>
 		));
-
-		var formStyle = {
-			padding: '10px'
-		};
 
 		var selectStyle = {
 			width: '300px'

@@ -170,6 +170,7 @@ class HomePage extends Component {
 										disabled={this.state.numberOfCards === 0}
 										className="btn btn-info"
 										onClick={this.reveal}
+										style={{ float: 'left' }}
 									>
 										Reveal
 									</button>
@@ -179,6 +180,7 @@ class HomePage extends Component {
 											disabled={this.state.numberOfCards === 0}
 											className="btn btn-success"
 											onClick={this.nextCard}
+											style={{ float: 'right' }}
 										>
 											Next
 										</button>
@@ -187,6 +189,7 @@ class HomePage extends Component {
 											disabled={this.state.numberOfCards === 0}
 											className="btn btn-success"
 											onClick={this.endSession}
+											style={{ float: 'right' }}
 										>
 											End Session
 										</button>

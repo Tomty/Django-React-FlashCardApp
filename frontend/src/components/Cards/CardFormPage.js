@@ -15,16 +15,16 @@ class CardFormPage extends React.Component {
 		if (match.params.id) {
 			this.props.fetchCard(match.params.id);
 		}
-		this.props.fetchCategories();
+		if (this.props.categories.length === 0) this.props.fetchCategories();
 	};
 
 	saveCard = (card, id) => {
 		if (id) {
 			this.props.updateCard(card);
-			setTimeout(() => this.setState({ redirect: true }), 200);
+			this.setState({ redirect: true });
 		} else {
 			this.props.saveCard(card);
-			setTimeout(() => this.setState({ redirect: true }), 200);
+			this.setState({ redirect: true });
 		}
 	};
 
