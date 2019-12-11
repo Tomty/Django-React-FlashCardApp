@@ -46,8 +46,10 @@ class CategoriesPage extends Component {
 
 	onSave(e, category) {
 		const cat = this.state.editItems.find((item) => item.id === category.id);
-		this.props.updateCategory(cat);
-		this.onCancel(e, category);
+		if (cat.name !== '') {
+			this.props.updateCategory(cat);
+			this.onCancel(e, category);
+		}
 	}
 
 	onCancel(e, category) {
@@ -92,6 +94,7 @@ class CategoriesPage extends Component {
 								className="form-contrl"
 								defaultValue={category.name}
 								onChange={(e) => this.onChangeEdit(e, category)}
+								disabled={this.state.categoryToDelete.id}
 							/>
 						</td>
 						<td>{this.props.cards.filter((item) => item.category.id === category.id).length}</td>
@@ -100,6 +103,7 @@ class CategoriesPage extends Component {
 								style={{ marginRight: '5px' }}
 								className="btn btn-success"
 								onClick={(e) => this.onSave(e, category)}
+								disabled={this.state.categoryToDelete.id}
 							>
 								Save
 							</button>
@@ -107,6 +111,7 @@ class CategoriesPage extends Component {
 								style={{ marginLeft: '5px' }}
 								className="btn btn-danger"
 								onClick={(e) => this.onCancel(e, category)}
+								disabled={this.state.categoryToDelete.id}
 							>
 								Cancel
 							</button>
@@ -121,6 +126,7 @@ class CategoriesPage extends Component {
 							<button
 								style={{ marginRight: '5px' }}
 								className="btn btn-info"
+								disabled={this.state.categoryToDelete.id}
 								onClick={(e) => this.onEdit(e, category)}
 							>
 								Edit
@@ -128,6 +134,7 @@ class CategoriesPage extends Component {
 							<button
 								style={{ marginLeft: '5px' }}
 								className="btn btn-danger"
+								disabled={this.state.categoryToDelete.id}
 								onClick={(e) => this.showAlert(e, category)}
 							>
 								Delete
@@ -141,9 +148,14 @@ class CategoriesPage extends Component {
 			<div>
 				<h1 align="center">Categories List</h1>
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
-					<Alert style={{ width: '50%' }} show={this.state.showAlert} variant="danger">
-						<Alert.Heading>Delete action</Alert.Heading>
-						<p>Attention! If you delete this category, all the cards related to it will be deleted too</p>
+					<Alert style={{ width: 'auto' }} show={this.state.showAlert} variant="danger">
+						<Alert.Heading>
+							You are about to delete the category {this.state.categoryToDelete.name} !
+						</Alert.Heading>
+						<p>
+							If you delete this category, all the cards belonging to {this.state.categoryToDelete.name}{' '}
+							will be deleted as well
+						</p>
 						<hr />
 						<div className="d-flex justify-content-center">
 							<button
@@ -181,11 +193,16 @@ class CategoriesPage extends Component {
 										onChange={(e) => this.onChangeAdd(e)}
 										value={this.state.newCategory}
 										className="form-control"
+										disabled={this.state.categoryToDelete.id}
 									/>
 								</td>
 								<td>0</td>
 								<td>
-									<button className="btn btn-success" onClick={(e) => this.onAdd(e)}>
+									<button
+										className="btn btn-success"
+										disabled={this.state.categoryToDelete.id}
+										onClick={(e) => this.onAdd(e)}
+									>
 										Add
 									</button>
 								</td>
