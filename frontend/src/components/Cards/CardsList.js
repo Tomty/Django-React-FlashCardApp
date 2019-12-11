@@ -13,7 +13,6 @@ export default function CardsList({ cards, deleteCard }) {
 				style={{
 					width: '16rem',
 					height: '15.2rem',
-					float: 'left',
 					margin: '5px',
 					padding: '5px 3px'
 				}}
@@ -45,7 +44,7 @@ export default function CardsList({ cards, deleteCard }) {
 	);
 
 	const cardsList = (
-		<div>
+		<div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
 			{addCard}
 			{cards.map((card) => <CardItem card={card} key={card.id} deleteCard={deleteCard} />)}
 		</div>

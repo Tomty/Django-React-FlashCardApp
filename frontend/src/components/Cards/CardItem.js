@@ -14,7 +14,6 @@ export default function CardItem({ card, deleteCard }) {
 					className="card"
 					style={{
 						width: '16rem',
-						float: 'left',
 						margin: '5px',
 						padding: '5px 3px'
 					}}
