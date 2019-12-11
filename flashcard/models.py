@@ -7,7 +7,7 @@ class Category(models.Model):
 
 
 class Card(models.Model):
-    question = models.CharField(max_length=50)
+    question = models.CharField(max_length=150)
     answer = models.CharField(max_length=50)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
