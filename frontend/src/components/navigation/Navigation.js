@@ -19,9 +19,9 @@ class Navigation extends Component {
 	render() {
 		return (
 			<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-				<a className="navbar-brand" href="/">
+				<Link to="/" className="navbar-brand">
 					Home
-				</a>
+				</Link>
 				<button
 					className="navbar-toggler"
 					type="button"
