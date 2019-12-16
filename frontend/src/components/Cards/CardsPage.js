@@ -52,20 +52,16 @@ class CardsPage extends Component {
 			</option>
 		));
 
-		var selectStyle = {
-			width: '300px'
-		};
-
 		return (
-			<div>
-				<div align="center">
+			<div style={{ backgroundColor: '#5186ba', height: '100vh' }}>
+				<div style={{ display: 'flex', flexDirection: 'column' }}>
 					<h1 align="center">Search</h1>
-					<div style={{ display: 'flex', justifyContent: 'center' }}>
-						<div style={{ display: 'flex', flexDirection: 'column', padding: '5px' }}>
-							<label> Choose Category</label>
+					<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+						<div style={{ display: 'flex', flexDirection: 'column', marginRight: '5px' }}>
+							<label style={{ fontWeight: 'bold' }}> Choose Category</label>
 							<select
+								style={{ width: '300px' }}
 								align="center"
-								style={selectStyle}
 								className="browser-default custom-select"
 								name="category"
 								onChange={this.onChange}
@@ -74,11 +70,11 @@ class CardsPage extends Component {
 								{categoryItems}
 							</select>
 						</div>
-						<div style={{ display: 'flex', flexDirection: 'column', padding: '5px' }}>
-							<label>Search Question</label>
+						<div style={{ display: 'flex', flexDirection: 'column', marginLeft: '5px' }}>
+							<label style={{ fontWeight: 'bold' }}>Search Question</label>
 							<input
+								style={{ width: '300px' }}
 								className="form-control"
-								style={selectStyle}
 								type="text"
 								name="search"
 								value={this.state.search}
@@ -88,8 +84,10 @@ class CardsPage extends Component {
 					</div>
 				</div>
 				<hr />
-				<h1 align="center">Cards List</h1>
-				<CardsList cards={this.state.cardsDisplayed} deleteCard={this.props.deleteCard} />
+				<div>
+					<h1 align="center">Cards List</h1>
+					<CardsList cards={this.state.cardsDisplayed} deleteCard={this.props.deleteCard} />
+				</div>
 			</div>
 		);
 	}

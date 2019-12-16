@@ -12,13 +12,16 @@ export default function CardsList({ cards, deleteCard }) {
 				className="card"
 				style={{
 					width: '16rem',
-					height: '15.2rem',
+					height: '14.8rem',
 					margin: '5px',
-					padding: '5px 3px'
+					padding: '5px 3px',
+					backgroundColor: '#5299d3'
 				}}
 			>
 				<Card.Header as="h5">
-					<div align="center">Add card</div>
+					<div align="center" style={{ fontWeight: 'bold', color: 'white' }}>
+						Add card
+					</div>
 				</Card.Header>
 				<Card.Body
 					className="cardBody"
@@ -28,7 +31,7 @@ export default function CardsList({ cards, deleteCard }) {
 						justifyContent: 'center'
 					}}
 				>
-					<Link to="/cards/new" className="btn btn-success">
+					<Link to="/cards/new" className="btn btn-success" style={{ border: 'solid black 0.1rem' }}>
 						+
 					</Link>
 				</Card.Body>
@@ -44,7 +47,7 @@ export default function CardsList({ cards, deleteCard }) {
 	);
 
 	const cardsList = (
-		<div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
+		<div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center' }}>
 			{addCard}
 			{cards.map((card) => <CardItem card={card} key={card.id} deleteCard={deleteCard} />)}
 		</div>

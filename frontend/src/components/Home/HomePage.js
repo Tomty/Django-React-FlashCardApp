@@ -86,22 +86,27 @@ class HomePage extends Component {
 		));
 
 		return (
-			<div>
+			<div style={{ backgroundColor: '#5186ba', height: '100vh' }}>
 				<br />
 				{!this.state.started ? (
 					<div>
 						<h1 align="center">Choose a category and start your learning session !</h1>
-						<label style={{ marginRight: '10px', marginLeft: '10px' }}>Category: </label>
-						<select
-							align="center"
-							style={{ width: 'auto' }}
-							className="browser-default custom-select"
-							name="category"
-							onChange={this.onChange}
-						>
-							<option value="No Category Selected">Choose a category</option>
-							{categoryItems}
-						</select>
+						<br />
+						<div align="center">
+							<label style={{ marginRight: '10px', marginLeft: '10px' }}>Category: </label>
+							<select
+								align="center"
+								style={{ width: 'auto' }}
+								className="browser-default custom-select"
+								name="category"
+								onChange={this.onChange}
+							>
+								<option value="No Category Selected">Choose a category</option>
+								{categoryItems}
+							</select>
+							<br />
+						</div>
+						<br />
 					</div>
 				) : (
 					<div>
@@ -125,29 +130,38 @@ class HomePage extends Component {
 							minWidth: '16rem',
 							width: 'auto',
 							margin: '5px',
-							padding: '5px 3px'
+							padding: '5px 3px',
+							backgroundColor: '#5299d3'
 						}}
 					>
 						<Card.Header as="h5">
-							<div align="center">{this.state.categorySelected}</div>
+							<div align="center" style={{ fontWeight: 'bold', color: 'white' }}>
+								{this.state.categorySelected}
+							</div>
 						</Card.Header>
 						<Card.Body className="cardBody">
 							{!this.state.started ? (
-								<Card.Title align="center">Number of cards</Card.Title>
+								<Card.Title align="center" style={{ color: 'white' }}>
+									Number of cards
+								</Card.Title>
 							) : (
-								<Card.Title align="center">
+								<Card.Title align="center" style={{ color: 'white' }}>
 									{this.state.cardsRemaining[this.state.rand].question}
 								</Card.Title>
 							)}
 							<br />
 							{!this.state.started ? (
-								<Card.Title align="center">{this.state.numberOfCards}</Card.Title>
+								<Card.Title align="center" style={{ color: 'white' }}>
+									{this.state.numberOfCards}
+								</Card.Title>
 							) : (
-								<Card.Title align="center">
+								<Card.Title align="center" style={{ color: 'white' }}>
 									{!this.state.reveal ? (
 										<div>?</div>
 									) : (
-										<div>{this.state.cardsRemaining[this.state.rand].answer}</div>
+										<div style={{ fontStyle: 'oblique' }}>
+											{this.state.cardsRemaining[this.state.rand].answer}
+										</div>
 									)}
 								</Card.Title>
 							)}
@@ -160,6 +174,7 @@ class HomePage extends Component {
 										disabled={this.state.numberOfCards === 0}
 										className="btn btn-success"
 										onClick={this.startSession}
+										style={{ border: 'solid black 0.1rem' }}
 									>
 										Start
 									</button>
@@ -170,7 +185,7 @@ class HomePage extends Component {
 										disabled={this.state.numberOfCards === 0}
 										className="btn btn-info"
 										onClick={this.reveal}
-										style={{ float: 'left' }}
+										style={{ float: 'left', border: 'solid black 0.1rem' }}
 									>
 										Reveal
 									</button>
@@ -180,7 +195,7 @@ class HomePage extends Component {
 											disabled={this.state.numberOfCards === 0}
 											className="btn btn-success"
 											onClick={this.nextCard}
-											style={{ float: 'right' }}
+											style={{ float: 'right', border: 'solid black 0.1rem' }}
 										>
 											Next
 										</button>
@@ -189,7 +204,7 @@ class HomePage extends Component {
 											disabled={this.state.numberOfCards === 0}
 											className="btn btn-success"
 											onClick={this.endSession}
-											style={{ float: 'right' }}
+											style={{ float: 'right', border: 'solid black 0.1rem' }}
 										>
 											End Session
 										</button>

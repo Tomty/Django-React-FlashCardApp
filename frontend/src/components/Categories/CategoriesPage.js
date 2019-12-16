@@ -88,7 +88,7 @@ class CategoriesPage extends Component {
 			(category) =>
 				this.state.editIds.includes(category.id) ? (
 					<tr key={category.id}>
-						<td align="center"> {category.id}</td>
+						<td align="center">{category.id}</td>
 						<td>
 							<input
 								className="form-contrl"
@@ -100,7 +100,7 @@ class CategoriesPage extends Component {
 						<td>{this.props.cards.filter((item) => item.category.id === category.id).length}</td>
 						<td>
 							<button
-								style={{ marginRight: '5px' }}
+								style={{ marginRight: '5px', border: 'solid black 0.1rem' }}
 								className="btn btn-success"
 								onClick={(e) => this.onSave(e, category)}
 								disabled={this.state.categoryToDelete.id}
@@ -108,7 +108,7 @@ class CategoriesPage extends Component {
 								Save
 							</button>
 							<button
-								style={{ marginLeft: '5px' }}
+								style={{ marginLeft: '5px', border: 'solid black 0.1rem' }}
 								className="btn btn-danger"
 								onClick={(e) => this.onCancel(e, category)}
 								disabled={this.state.categoryToDelete.id}
@@ -124,7 +124,7 @@ class CategoriesPage extends Component {
 						<td>{this.props.cards.filter((item) => item.category.id === category.id).length}</td>
 						<td>
 							<button
-								style={{ marginRight: '5px' }}
+								style={{ marginRight: '5px', border: 'solid black 0.1rem' }}
 								className="btn btn-info"
 								disabled={this.state.categoryToDelete.id}
 								onClick={(e) => this.onEdit(e, category)}
@@ -132,7 +132,7 @@ class CategoriesPage extends Component {
 								Edit
 							</button>
 							<button
-								style={{ marginLeft: '5px' }}
+								style={{ marginLeft: '5px', border: 'solid black 0.1rem' }}
 								className="btn btn-danger"
 								disabled={this.state.categoryToDelete.id}
 								onClick={(e) => this.showAlert(e, category)}
@@ -145,7 +145,7 @@ class CategoriesPage extends Component {
 		);
 
 		return (
-			<div>
+			<div style={{ backgroundColor: '#5186ba', height: '100vh' }}>
 				<h1 align="center">Categories List</h1>
 				<div style={{ display: 'flex', justifyContent: 'center' }}>
 					<Alert style={{ width: 'auto' }} show={this.state.showAlert} variant="danger">
@@ -159,14 +159,24 @@ class CategoriesPage extends Component {
 						<hr />
 						<div className="d-flex justify-content-center">
 							<button
-								style={{ marginRight: '5px' }}
+								style={{
+									marginRight: '5px',
+									border: 'thick double',
+									fontWeight: 'bold',
+									color: 'black'
+								}}
 								className="btn btn-danger"
 								onClick={() => this.onDelete()}
 							>
 								Delete
 							</button>
 							<button
-								style={{ marginLeft: '5px' }}
+								style={{
+									marginLeft: '5px',
+									border: 'thick double',
+									fontWeight: 'bold',
+									color: 'black'
+								}}
 								className="btn btn-danger"
 								onClick={() => this.setState({ showAlert: false, categoryToDelete: {} })}
 							>
@@ -176,10 +186,18 @@ class CategoriesPage extends Component {
 					</Alert>
 				</div>
 				<div style={{ padding: '10px' }}>
-					<Table striped bordered hover size="sm">
+					<Table
+						striped
+						bordered
+						hover
+						size="sm"
+						style={{
+							backgroundColor: '#5299d3'
+						}}
+					>
 						<thead>
 							<tr>
-								<th align="center">#</th>
+								<th align="center">Id</th>
 								<th>Category Name</th>
 								<th>Number of cards</th>
 							</tr>
@@ -202,6 +220,7 @@ class CategoriesPage extends Component {
 										className="btn btn-success"
 										disabled={this.state.categoryToDelete.id}
 										onClick={(e) => this.onAdd(e)}
+										style={{ border: 'solid black 0.1rem' }}
 									>
 										Add
 									</button>

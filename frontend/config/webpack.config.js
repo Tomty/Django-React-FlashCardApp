@@ -67,8 +67,8 @@ module.exports = function(webpackEnv) {
   //const publicPath = isEnvProduction
   //  ? paths.servedPath
   //  : isEnvDevelopment && '/';
-  //'http://localhost:3000/'
-  const publicPath = "/static/bundles/";
+  const publicPath = 'http://localhost:3000/'
+  //const publicPath = "/static/bundles";
   
   const cssFilename = 'css/[name].[contenthash:8].css';
   // Some apps do not use client-side routing with pushState.
@@ -81,8 +81,7 @@ module.exports = function(webpackEnv) {
   //  const publicUrl = isEnvProduction
   //  ? publicPath.slice(0, -1)
   //  : isEnvDevelopment && '';
-  const publicUrl = publicPath.slice(0, -1);
-  // const publicUrl = 'http://localhost:3000/';
+  const publicUrl = 'http://localhost:3000/';
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
@@ -165,10 +164,8 @@ module.exports = function(webpackEnv) {
       // the line below with these two lines if you prefer the stock client:
       // require.resolve('webpack-dev-server/client') + '?/',
       // require.resolve('webpack/hot/dev-server'),
-	  
-	  //require.resolve('webpack-dev-server/client') + '?http://localhost:3000',
-	  //require.resolve('webpack/hot/dev-server'),
-	  
+	  require.resolve('webpack-dev-server/client') + '?http://localhost:3000',
+	  require.resolve('webpack/hot/dev-server'),
       //isEnvDevelopment &&
         //require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
@@ -184,11 +181,15 @@ module.exports = function(webpackEnv) {
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
-      filename: 'js/[name].[chunkhash:8].js',
+      filename: isEnvProduction
+        ? 'static/js/[name].[contenthash:8].js'
+        : isEnvDevelopment && 'static/js/bundle.js',
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
-      chunkFilename: 'js/[name].[chunkhash:8].chunk.js',
+      chunkFilename: isEnvProduction
+        ? 'static/js/[name].[contenthash:8].chunk.js'
+        : isEnvDevelopment && 'static/js/[name].chunk.js',
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
       publicPath: publicPath,
@@ -367,7 +368,7 @@ module.exports = function(webpackEnv) {
               loader: require.resolve('url-loader'),
               options: {
                 limit: imageInlineSizeLimit,
-                name: 'media/[name].[hash:8].[ext]',
+                name: 'static/media/[name].[hash:8].[ext]',
               },
             },
             // Process application JS with Babel.
@@ -509,7 +510,7 @@ module.exports = function(webpackEnv) {
               // by webpacks internal loaders.
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: 'media/[name].[hash:8].[ext]',
+                name: 'static/media/[name].[hash:8].[ext]',
               },
             },
             // ** STOP ** Are you adding a new loader?
@@ -583,8 +584,8 @@ module.exports = function(webpackEnv) {
         new MiniCssExtractPlugin({
           // Options similar to the same options in webpackOptions.output
           // both options are optional
-          filename: 'css/[name].[contenthash:8].css',
-          chunkFilename: 'css/[name].[contenthash:8].chunk.css',
+          filename: 'static/css/[name].[contenthash:8].css',
+          chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
         }),
       // Generate an asset manifest file with the following content:
       // - "files" key: Mapping of all asset filenames to their corresponding
@@ -661,7 +662,7 @@ module.exports = function(webpackEnv) {
           // The formatter is invoked directly in WebpackDevServerUtils during development
           formatter: isEnvProduction ? typescriptFormatter : undefined,
         }),
-		new BundleTracker({path: paths.statsRoot, filename: 'webpack-stats.prod.json'}),
+		new BundleTracker({path: paths.statsRoot, filename: 'webpack-stats.dev.json'}),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
